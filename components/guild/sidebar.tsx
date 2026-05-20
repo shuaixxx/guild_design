@@ -3,11 +3,14 @@
 import { 
   LayoutDashboard, 
   Users, 
-  Flag, 
   Layers, 
+  Flag,
   FileText, 
+  Trophy,
+  Database,
   Settings,
-  Swords
+  Swords,
+  RefreshCw
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -19,10 +22,11 @@ interface GuildSidebarProps {
 const menuItems = [
   { id: "overview", label: "联赛总览", icon: LayoutDashboard },
   { id: "player-data", label: "玩家数据", icon: Users },
+  { id: "team-sandbox", label: "分区沙盘", icon: Layers },
   { id: "flag-analysis", label: "旗手分析", icon: Flag },
-  { id: "team-sandbox", label: "分团沙盘", icon: Layers },
-  { id: "replay", label: "复盘报告", icon: FileText },
-  { id: "settings", label: "设置", icon: Settings },
+  { id: "replay", label: "场次复盘", icon: FileText },
+  { id: "famous", label: "名将管理", icon: Trophy },
+  { id: "data-mgmt", label: "数据管理", icon: Database },
 ]
 
 export function GuildSidebar({ activeSection, onSectionChange }: GuildSidebarProps) {
@@ -61,6 +65,29 @@ export function GuildSidebar({ activeSection, onSectionChange }: GuildSidebarPro
           )
         })}
       </nav>
+
+      {/* Bottom Section */}
+      <div className="border-t border-border p-3 space-y-2">
+        {/* Sync Status */}
+        <div className="flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground">
+          <RefreshCw className="h-3.5 w-3.5" />
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
+            数据已同步
+          </span>
+        </div>
+        
+        {/* Settings */}
+        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition-all">
+          <Settings className="h-5 w-5" />
+          <span>设置</span>
+        </button>
+
+        {/* Version */}
+        <div className="px-3 py-2 text-[10px] text-muted-foreground">
+          版本号 v3.0.0
+        </div>
+      </div>
     </div>
   )
 }

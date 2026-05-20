@@ -3,53 +3,51 @@
 import { Swords, Target, Flame, Heart, Trophy } from "lucide-react"
 
 const top3KillData = [
-  { rank: 1, name: "小后池", value: 12.8, avatar: "后" },
-  { rank: 2, name: "月舞生劫", value: 11.2, avatar: "月" },
-  { rank: 3, name: "闻人柳桥", value: 10.5, avatar: "闻" },
+  { rank: 1, name: "青岚", value: "14.2", avatar: "青" },
+  { rank: 2, name: "长歌", value: "13.6", avatar: "长" },
+  { rank: 3, name: "夜霜", value: "12.8", avatar: "夜" },
 ]
 
 const top3DamageData = [
-  { rank: 1, name: "月殿南桥", value: 287.5, avatar: "殿" },
-  { rank: 2, name: "只吃香蕉菜", value: 265.3, avatar: "吃" },
-  { rank: 3, name: "暮谷", value: 248.9, avatar: "暮" },
+  { rank: 1, name: "星河", value: "286.4万", avatar: "星" },
+  { rank: 2, name: "青岚", value: "274.8万", avatar: "青" },
+  { rank: 3, name: "月照城峰", value: "261.5万", avatar: "月" },
 ]
 
 const top3HealData = [
-  { rank: 1, name: "谷雨", value: 198.6, avatar: "谷" },
-  { rank: 2, name: "小涛", value: 185.2, avatar: "涛" },
-  { rank: 3, name: "何似在人间", value: 172.8, avatar: "何" },
+  { rank: 1, name: "归舟", value: "218.6万", avatar: "归" },
+  { rank: 2, name: "谷雨", value: "206.3万", avatar: "谷" },
+  { rank: 3, name: "小妍", value: "194.8万", avatar: "小" },
 ]
 
 function Top3Card({ title, icon: Icon, data, unit }: { 
   title: string
   icon: React.ElementType
-  data: { rank: number; name: string; value: number; avatar: string }[]
+  data: { rank: number; name: string; value: string; avatar: string }[]
   unit: string
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-          <Icon className="h-4 w-4 text-primary" />
+    <div className="rounded-lg border border-border bg-card p-3 h-full">
+      <div className="flex items-center gap-2 mb-2">
+        <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
+          <Icon className="h-3.5 w-3.5 text-primary" />
         </div>
-        <span className="text-sm font-medium text-foreground">{title}</span>
+        <span className="text-xs font-medium text-foreground">{title}</span>
+        <span className="text-[10px] text-muted-foreground ml-auto">{unit}</span>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         {data.map((item) => (
-          <div key={item.rank} className="flex items-center gap-3">
-            <span className={`text-xs font-bold w-5 ${
-              item.rank === 1 ? "text-primary" : 
-              item.rank === 2 ? "text-muted-foreground" : 
-              "text-muted-foreground/60"
+          <div key={item.rank} className="flex items-center gap-2">
+            <span className={`text-[10px] font-bold w-4 ${
+              item.rank === 1 ? "text-primary" : "text-muted-foreground/60"
             }`}>
-              #{item.rank}
+              {item.rank}
             </span>
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-xs font-medium text-foreground">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary text-[10px] font-medium text-foreground">
               {item.avatar}
             </div>
-            <span className="flex-1 text-sm text-foreground truncate">{item.name}</span>
-            <span className="text-sm font-semibold text-primary">{item.value}</span>
-            <span className="text-xs text-muted-foreground">{unit}</span>
+            <span className="flex-1 text-xs text-foreground truncate">{item.name}</span>
+            <span className="text-xs font-semibold text-primary">{item.value}</span>
           </div>
         ))}
       </div>
@@ -59,38 +57,38 @@ function Top3Card({ title, icon: Icon, data, unit }: {
 
 export function LeagueStatsCards() {
   return (
-    <div className="grid grid-cols-5 gap-4">
+    <div className="grid grid-cols-5 gap-3">
       {/* Total Matches */}
-      <div className="rounded-xl border border-border bg-card p-4">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-            <Swords className="h-4 w-4 text-primary" />
+      <div className="rounded-lg border border-border bg-card p-3">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
+            <Swords className="h-3.5 w-3.5 text-primary" />
           </div>
-          <span className="text-sm font-medium text-foreground">总场次</span>
+          <span className="text-xs font-medium text-foreground">总场次</span>
         </div>
-        <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-bold text-foreground">48</span>
-          <span className="text-sm text-muted-foreground">场</span>
+        <div className="flex items-baseline gap-1">
+          <span className="text-2xl font-bold text-foreground">18</span>
+          <span className="text-xs text-muted-foreground">场</span>
         </div>
-        <div className="mt-2 text-xs text-muted-foreground">
-          较上周 <span className="text-green-500">+6</span>
+        <div className="text-[10px] text-muted-foreground">
+          较上周 <span className="text-green-500">+2</span>
         </div>
       </div>
 
       {/* Win Rate */}
-      <div className="rounded-xl border border-border bg-card p-4">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-            <Trophy className="h-4 w-4 text-primary" />
+      <div className="rounded-lg border border-border bg-card p-3">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
+            <Trophy className="h-3.5 w-3.5 text-primary" />
           </div>
-          <span className="text-sm font-medium text-foreground">胜率</span>
+          <span className="text-xs font-medium text-foreground">胜率</span>
         </div>
-        <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-bold text-foreground">68.7</span>
-          <span className="text-sm text-muted-foreground">%</span>
+        <div className="flex items-baseline gap-1">
+          <span className="text-2xl font-bold text-foreground">66.7</span>
+          <span className="text-xs text-muted-foreground">%</span>
         </div>
-        <div className="mt-2 text-xs text-muted-foreground">
-          较上周 <span className="text-green-500">+2.3%</span>
+        <div className="text-[10px] text-muted-foreground">
+          12 胜 / 6 负
         </div>
       </div>
 
@@ -99,7 +97,7 @@ export function LeagueStatsCards() {
         title="场均击杀 TOP3" 
         icon={Target} 
         data={top3KillData}
-        unit="次"
+        unit="次/场"
       />
 
       {/* Top 3 Damage */}
@@ -107,7 +105,7 @@ export function LeagueStatsCards() {
         title="场均伤害 TOP3" 
         icon={Flame} 
         data={top3DamageData}
-        unit="万"
+        unit="万/场"
       />
 
       {/* Top 3 Healing */}
@@ -115,7 +113,7 @@ export function LeagueStatsCards() {
         title="场均治疗 TOP3" 
         icon={Heart} 
         data={top3HealData}
-        unit="万"
+        unit="万/场"
       />
     </div>
   )

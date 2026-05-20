@@ -1,20 +1,26 @@
 "use client"
 
 import { useState } from "react"
-import { TrendingUp, TrendingDown } from "lucide-react"
+import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 
 const trendData = [
-  { date: "05/01", value: 82.5 },
-  { date: "05/04", value: 85.2 },
-  { date: "05/07", value: 83.8 },
-  { date: "05/10", value: 88.1 },
-  { date: "05/13", value: 86.5 },
-  { date: "05/16", value: 84.2 },
-  { date: "05/19", value: 89.7 },
-  { date: "05/22", value: 91.3 },
-  { date: "05/25", value: 88.9 },
-  { date: "05/28", value: 93.2 },
+  { date: "05-18", value: 2012 },
+  { date: "05-20", value: 2108 },
+  { date: "05-22", value: 2158 },
+  { date: "05-24", value: 2294 },
+  { date: "05-26", value: 2118 },
+  { date: "05-28", value: 2302 },
+  { date: "05-30", value: 2248 },
+  { date: "06-01", value: 2412 },
+  { date: "06-03", value: 2358 },
+  { date: "06-05", value: 2108 },
+  { date: "06-07", value: 2278 },
+  { date: "06-09", value: 2468 },
+  { date: "06-11", value: 2662 },
+  { date: "06-13", value: 2518 },
+  { date: "06-15", value: 2302 },
+  { date: "06-17", value: 2742 },
 ]
 
 const tabs = [
@@ -29,17 +35,17 @@ export function OverallTrends() {
   const [activeTab, setActiveTab] = useState("rating")
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 h-full">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base font-semibold text-foreground">总体趋势</h3>
-        <div className="flex items-center gap-4">
+    <div className="rounded-lg border border-border bg-card p-3 h-full flex flex-col">
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="text-sm font-semibold text-foreground">总体趋势</h3>
+        <div className="flex items-center gap-3">
           {/* Tabs */}
-          <div className="flex items-center gap-1 rounded-lg bg-secondary/50 p-1">
+          <div className="flex items-center gap-0.5 rounded-lg bg-secondary/50 p-0.5">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1.5 text-xs rounded-md transition-all ${
+                className={`px-2 py-1 text-[10px] rounded transition-all ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -49,54 +55,58 @@ export function OverallTrends() {
               </button>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Trend Indicators */}
-      <div className="flex items-center gap-6 mb-4">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-muted-foreground">当前趋势：</span>
-          <span className="flex items-center gap-1 text-sm font-medium text-green-500">
-            <TrendingUp className="h-4 w-4" />
-            回升中
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-muted-foreground">增长幅度：</span>
-          <span className="text-sm font-semibold text-primary">+4.15</span>
+          {/* Trend Indicators */}
+          <div className="flex items-center gap-3 text-xs">
+            <div className="flex items-center gap-1">
+              <span className="text-muted-foreground">当前趋势：</span>
+              <span className="flex items-center gap-0.5 font-medium text-green-500">
+                <TrendingUp className="h-3 w-3" />
+                回升中
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="text-muted-foreground">增长幅度：</span>
+              <span className="font-semibold text-primary">+4.15</span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Chart */}
-      <div className="h-[200px]">
+      <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={trendData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+          <AreaChart data={trendData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
             <defs>
               <linearGradient id="trendGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="oklch(0.75 0.15 70)" stopOpacity={0.4} />
-                <stop offset="100%" stopColor="oklch(0.75 0.15 70)" stopOpacity={0.05} />
+                <stop offset="100%" stopColor="oklch(0.75 0.15 70)" stopOpacity={0.02} />
               </linearGradient>
             </defs>
             <XAxis 
               dataKey="date" 
               axisLine={false}
               tickLine={false}
-              tick={{ fill: 'oklch(0.6 0.02 250)', fontSize: 10 }}
+              tick={{ fill: 'oklch(0.5 0.02 250)', fontSize: 9 }}
+              interval={1}
             />
             <YAxis 
               axisLine={false}
               tickLine={false}
-              tick={{ fill: 'oklch(0.6 0.02 250)', fontSize: 10 }}
-              domain={[75, 100]}
+              tick={{ fill: 'oklch(0.5 0.02 250)', fontSize: 9 }}
+              domain={[1900, 2900]}
+              tickFormatter={(value) => value.toLocaleString()}
             />
             <Tooltip 
               contentStyle={{ 
                 backgroundColor: 'oklch(0.15 0.02 250)', 
                 border: '1px solid oklch(0.25 0.03 250)',
-                borderRadius: '8px',
-                color: 'oklch(0.93 0.01 60)'
+                borderRadius: '6px',
+                color: 'oklch(0.93 0.01 60)',
+                fontSize: '11px',
+                padding: '6px 10px'
               }}
-              labelStyle={{ color: 'oklch(0.6 0.02 250)' }}
+              labelStyle={{ color: 'oklch(0.6 0.02 250)', marginBottom: '2px' }}
+              formatter={(value: number) => [value.toLocaleString(), '评分']}
             />
             <Area
               type="monotone"
@@ -104,6 +114,8 @@ export function OverallTrends() {
               stroke="oklch(0.75 0.15 70)"
               strokeWidth={2}
               fill="url(#trendGradient)"
+              dot={{ fill: 'oklch(0.75 0.15 70)', strokeWidth: 0, r: 2 }}
+              activeDot={{ fill: 'oklch(0.75 0.15 70)', strokeWidth: 2, stroke: 'oklch(0.15 0.02 250)', r: 4 }}
             />
           </AreaChart>
         </ResponsiveContainer>

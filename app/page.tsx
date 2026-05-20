@@ -4,9 +4,7 @@ import { useState } from "react"
 import { GuildSidebar } from "@/components/guild/sidebar"
 import { LeagueHeader } from "@/components/guild/league-header"
 import { LeagueStatsCards } from "@/components/guild/league-stats-cards"
-import { OverallTrends } from "@/components/guild/overall-trends"
-import { WeeklySummary } from "@/components/guild/weekly-summary"
-import { TeamPerformance } from "@/components/guild/team-performance"
+import { MainAnalysisSection } from "@/components/guild/main-analysis-section"
 import { MatchTimeline } from "@/components/guild/match-timeline"
 
 export default function LeagueOverviewPage() {
@@ -22,31 +20,18 @@ export default function LeagueOverviewPage() {
         {/* Header */}
         <LeagueHeader />
 
-        {/* Content Area */}
-        <div className="flex-1 overflow-auto p-4 space-y-4">
-          {/* Stats Overview Cards */}
+        {/* Content Area - 使用 flex-1 和固定间距确保内容在一屏内 */}
+        <div className="flex flex-1 flex-col p-4 gap-3 overflow-hidden">
+          {/* Top Stats Cards */}
           <LeagueStatsCards />
 
-          {/* Middle Section - Trends and Summary */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-2">
-              <OverallTrends />
-            </div>
-            <div className="col-span-1">
-              <WeeklySummary />
-            </div>
+          {/* Middle Section - 占据主要空间 */}
+          <div className="flex-1 min-h-0">
+            <MainAnalysisSection />
           </div>
 
-          {/* Team Performance */}
-          <TeamPerformance />
-
-          {/* Match Timeline */}
+          {/* Bottom - Match Timeline */}
           <MatchTimeline />
-
-          {/* Footer Info */}
-          <div className="flex items-center justify-between text-xs text-muted-foreground pb-2">
-            <span>数据统计截至：2025-05-28 23:59</span>
-          </div>
         </div>
       </div>
     </div>

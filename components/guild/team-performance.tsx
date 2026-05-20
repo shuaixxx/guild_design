@@ -6,48 +6,53 @@ import { Line, LineChart, ResponsiveContainer } from "recharts"
 const teamData = [
   {
     rank: 1,
-    name: "1团 (主攻团)",
-    score: 92.4,
-    change: +3.2,
-    winRate: 78,
-    style: "主攻",
-    trend: [65, 72, 68, 75, 82, 85, 88, 92],
+    name: "1团",
+    score: 2732,
+    change: +144,
+    winRate: "72.7%",
+    record: "8胜3负",
+    style: "稳健运营",
+    trend: [2400, 2450, 2520, 2580, 2620, 2680, 2732],
   },
   {
     rank: 2,
-    name: "2团 (推进团)",
-    score: 89.7,
-    change: +1.8,
-    winRate: 72,
-    style: "推进",
-    trend: [60, 65, 70, 68, 75, 80, 85, 89],
+    name: "2团",
+    score: 2284,
+    change: -114,
+    winRate: "63.6%",
+    record: "7胜3负",
+    style: "中期压制",
+    trend: [2450, 2480, 2420, 2380, 2350, 2320, 2284],
   },
   {
     rank: 3,
-    name: "防守团",
-    score: 87.2,
-    change: -0.5,
-    winRate: 68,
-    style: "防守",
-    trend: [70, 75, 72, 78, 82, 85, 88, 87],
+    name: "3团",
+    score: 2411,
+    change: +58,
+    winRate: "65.7%",
+    record: "6胜3负",
+    style: "多点爆发",
+    trend: [2300, 2320, 2350, 2380, 2390, 2400, 2411],
   },
   {
     rank: 4,
-    name: "机动团",
-    score: 84.5,
-    change: +2.1,
-    winRate: 65,
-    style: "机动",
-    trend: [55, 60, 58, 65, 70, 75, 80, 84],
+    name: "4团",
+    score: 2126,
+    change: +82,
+    winRate: "56.6%",
+    record: "5胜4负",
+    style: "均衡推进",
+    trend: [2000, 2020, 2050, 2080, 2100, 2110, 2126],
   },
   {
     rank: 5,
-    name: "替补团",
-    score: 78.3,
-    change: -1.2,
-    winRate: 58,
-    style: "替补",
-    trend: [60, 62, 58, 65, 70, 72, 80, 78],
+    name: "5团",
+    score: 1985,
+    change: +74,
+    winRate: "50.0%",
+    record: "4胜4负",
+    style: "保守运营",
+    trend: [1880, 1900, 1920, 1940, 1960, 1970, 1985],
   },
 ]
 
@@ -55,7 +60,7 @@ function MiniChart({ data, isPositive }: { data: number[]; isPositive: boolean }
   const chartData = data.map((value, index) => ({ value, index }))
   
   return (
-    <div className="w-20 h-8">
+    <div className="w-14 h-6">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={chartData}>
           <Line
@@ -73,63 +78,56 @@ function MiniChart({ data, isPositive }: { data: number[]; isPositive: boolean }
 
 export function TeamPerformance() {
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <h3 className="text-base font-semibold text-foreground mb-4">各团表现趋势</h3>
+    <div className="rounded-lg border border-border bg-card p-3 h-full flex flex-col">
+      <h3 className="text-sm font-semibold text-foreground mb-2">各团表现趋势</h3>
       
-      <div className="grid grid-cols-5 gap-4">
+      <div className="flex-1 grid grid-cols-5 gap-2 min-h-0">
         {teamData.map((team) => (
           <div 
             key={team.rank}
-            className="rounded-lg border border-border bg-secondary/20 p-4 hover:border-primary/50 transition-colors"
+            className="rounded-lg border border-border bg-secondary/20 p-2.5 hover:border-primary/50 transition-colors flex flex-col"
           >
             {/* Rank & Name */}
-            <div className="flex items-center gap-2 mb-3">
-              <span className={`text-lg font-bold ${
-                team.rank === 1 ? "text-primary" : 
-                team.rank === 2 ? "text-muted-foreground" : 
-                "text-muted-foreground/60"
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <span className={`text-sm font-bold ${
+                team.rank === 1 ? "text-primary" : "text-muted-foreground/60"
               }`}>
                 #{team.rank}
               </span>
-              <span className="text-sm font-medium text-foreground truncate">{team.name}</span>
+              <span className="text-xs font-medium text-foreground">{team.name}</span>
             </div>
 
-            {/* Score */}
-            <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-2xl font-bold text-foreground">{team.score}</span>
-              <div className={`flex items-center gap-0.5 text-xs ${
+            {/* Score & Change */}
+            <div className="flex items-baseline gap-1.5 mb-1">
+              <span className="text-lg font-bold text-foreground">{team.score}</span>
+              <div className={`flex items-center gap-0.5 text-[10px] ${
                 team.change >= 0 ? "text-green-500" : "text-red-500"
               }`}>
                 {team.change >= 0 ? (
-                  <TrendingUp className="h-3 w-3" />
+                  <TrendingUp className="h-2.5 w-2.5" />
                 ) : (
-                  <TrendingDown className="h-3 w-3" />
+                  <TrendingDown className="h-2.5 w-2.5" />
                 )}
                 <span>{team.change >= 0 ? "+" : ""}{team.change}</span>
               </div>
             </div>
 
             {/* Mini Chart */}
-            <div className="mb-3">
+            <div className="mb-1.5">
               <MiniChart data={team.trend} isPositive={team.change >= 0} />
             </div>
 
             {/* Stats */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <span className="text-xs text-muted-foreground">胜率</span>
-                <span className="text-sm font-semibold text-foreground">{team.winRate}%</span>
-              </div>
-              <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                team.style === "主攻" ? "bg-primary/20 text-primary" :
-                team.style === "推进" ? "bg-blue-500/20 text-blue-400" :
-                team.style === "防守" ? "bg-green-500/20 text-green-400" :
-                team.style === "机动" ? "bg-yellow-500/20 text-yellow-400" :
-                "bg-secondary text-muted-foreground"
-              }`}>
-                {team.style}
-              </span>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] text-muted-foreground">胜率</span>
+              <span className="text-[10px] font-semibold text-foreground">{team.winRate}</span>
             </div>
+            <div className="text-[9px] text-muted-foreground/70 mb-1.5">{team.record}</div>
+
+            {/* Style Tag */}
+            <span className="px-1.5 py-0.5 rounded text-[9px] font-medium bg-primary/10 text-primary self-start">
+              {team.style}
+            </span>
           </div>
         ))}
       </div>

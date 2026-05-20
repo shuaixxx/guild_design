@@ -78,18 +78,18 @@ function MiniChart({ data, isPositive }: { data: number[]; isPositive: boolean }
 
 export function TeamPerformance() {
   return (
-    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col">
-      <h3 className="text-[15px] font-semibold text-foreground mb-3">各团表现趋势</h3>
+    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col min-h-0 min-w-0">
+      <h3 className="text-[15px] font-semibold text-foreground mb-3 shrink-0">各团表现趋势</h3>
       
-      <div className="flex-1 grid grid-cols-5 gap-3 min-h-0">
+      <div className="flex-1 grid grid-cols-5 gap-3 min-h-0 min-w-0">
         {teamData.map((team) => (
           <div 
             key={team.rank}
-            className="rounded-lg border border-border bg-secondary/20 p-3 hover:border-primary/50 transition-colors flex flex-col"
+            className="rounded-lg border border-border bg-secondary/20 p-3 hover:border-primary/50 transition-colors flex flex-col min-w-0"
           >
             {/* Rank & Name */}
             <div className="flex items-center gap-2 mb-2">
-              <span className={`text-base font-bold ${
+              <span className={`text-sm font-bold ${
                 team.rank === 1 ? "text-primary" : "text-muted-foreground/60"
               }`}>
                 #{team.rank}
@@ -112,7 +112,7 @@ export function TeamPerformance() {
               </div>
             </div>
 
-            {/* Mini Chart - 横向铺满 */}
+            {/* Mini Chart */}
             <div className="mb-2">
               <MiniChart data={team.trend} isPositive={team.change >= 0} />
             </div>

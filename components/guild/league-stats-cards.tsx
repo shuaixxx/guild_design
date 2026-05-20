@@ -27,27 +27,27 @@ function Top3Card({ title, icon: Icon, data, unit }: {
   unit: string
 }) {
   return (
-    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col">
+    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col min-w-0">
       <div className="flex items-center gap-2 mb-3">
-        <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10">
+        <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10 shrink-0">
           <Icon className="h-4 w-4 text-primary" />
         </div>
-        <span className="text-sm font-medium text-foreground">{title}</span>
-        <span className="text-xs text-muted-foreground ml-auto">{unit}</span>
+        <span className="text-sm font-medium text-foreground truncate">{title}</span>
+        <span className="text-xs text-muted-foreground ml-auto shrink-0">{unit}</span>
       </div>
       <div className="flex-1 flex flex-col justify-center gap-2">
         {data.map((item) => (
-          <div key={item.rank} className="flex items-center gap-2.5">
-            <span className={`text-sm font-bold w-5 ${
+          <div key={item.rank} className="flex items-center gap-2">
+            <span className={`text-sm font-bold w-4 shrink-0 ${
               item.rank === 1 ? "text-primary" : "text-muted-foreground/60"
             }`}>
               {item.rank}
             </span>
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-xs font-medium text-foreground">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary text-xs font-medium text-foreground shrink-0">
               {item.avatar}
             </div>
-            <span className="flex-1 text-sm text-foreground truncate">{item.name}</span>
-            <span className="text-sm font-semibold text-primary">{item.value}</span>
+            <span className="flex-1 text-sm text-foreground truncate min-w-0">{item.name}</span>
+            <span className="text-sm font-semibold text-primary shrink-0">{item.value}</span>
           </div>
         ))}
       </div>
@@ -57,18 +57,18 @@ function Top3Card({ title, icon: Icon, data, unit }: {
 
 export function LeagueStatsCards() {
   return (
-    <div className="grid gap-4 h-[155px] shrink-0" style={{ gridTemplateColumns: '1fr 1fr 1.5fr 1.5fr 1.5fr' }}>
+    <div className="grid gap-4 h-full min-w-0" style={{ gridTemplateColumns: '1fr 1fr 1.5fr 1.5fr 1.5fr' }}>
       {/* Total Matches */}
-      <div className="rounded-lg border border-border bg-card p-4 flex flex-col">
+      <div className="rounded-lg border border-border bg-card p-4 flex flex-col min-w-0">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10 shrink-0">
             <Swords className="h-4 w-4 text-primary" />
           </div>
           <span className="text-sm font-medium text-foreground">总场次</span>
         </div>
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex items-baseline gap-1">
-            <span className="text-[32px] font-bold text-foreground leading-none">18</span>
+            <span className="text-3xl font-bold text-foreground leading-none">18</span>
             <span className="text-sm text-muted-foreground">场</span>
           </div>
           <div className="text-xs text-muted-foreground mt-1">
@@ -78,16 +78,16 @@ export function LeagueStatsCards() {
       </div>
 
       {/* Win Rate */}
-      <div className="rounded-lg border border-border bg-card p-4 flex flex-col">
+      <div className="rounded-lg border border-border bg-card p-4 flex flex-col min-w-0">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10 shrink-0">
             <Trophy className="h-4 w-4 text-primary" />
           </div>
           <span className="text-sm font-medium text-foreground">胜率</span>
         </div>
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex items-baseline gap-1">
-            <span className="text-[32px] font-bold text-foreground leading-none">66.7</span>
+            <span className="text-3xl font-bold text-foreground leading-none">66.7</span>
             <span className="text-sm text-muted-foreground">%</span>
           </div>
           <div className="text-xs text-muted-foreground mt-1">

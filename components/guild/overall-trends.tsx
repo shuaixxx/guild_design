@@ -35,8 +35,8 @@ export function OverallTrends() {
   const [activeTab, setActiveTab] = useState("rating")
 
   return (
-    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col">
-      <div className="flex items-center justify-between mb-3">
+    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col min-h-0 min-w-0">
+      <div className="flex items-center justify-between mb-3 shrink-0">
         <h3 className="text-[15px] font-semibold text-foreground">总体趋势</h3>
         <div className="flex items-center gap-4">
           {/* Tabs */}
@@ -73,7 +73,7 @@ export function OverallTrends() {
       </div>
 
       {/* Chart */}
-      <div className="flex-1 min-h-0">
+      <div className="flex-1 min-h-0 min-w-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={trendData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
             <defs>

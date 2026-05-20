@@ -62,23 +62,33 @@ const summaryItems = [
 
 export function WeeklySummary() {
   return (
-    <div className="rounded-lg border border-border bg-card p-3 h-full flex flex-col">
-      <h3 className="text-sm font-semibold text-foreground mb-2">上周联赛总结</h3>
+    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col">
+      <h3 className="text-[15px] font-semibold text-foreground mb-3">上周联赛总结</h3>
       
-      <div className="flex-1 flex flex-col gap-1.5 overflow-auto">
+      {/* Main Conclusion Banner */}
+      <div className="rounded-lg bg-gradient-to-r from-primary/20 to-primary/5 border border-primary/30 p-3 mb-3">
+        <div className="flex items-center gap-2 mb-1">
+          <TrendingUp className="h-4 w-4 text-primary" />
+          <span className="text-xs text-muted-foreground">上周结论</span>
+        </div>
+        <div className="text-lg font-bold text-primary">整体回升</div>
+        <p className="text-xs text-muted-foreground mt-1">团队评分持续上扬，1团表现突出，需关注5团状态波动</p>
+      </div>
+      
+      <div className="flex-1 flex flex-col gap-2 overflow-auto">
         {summaryItems.map((item, index) => {
           const Icon = item.icon
           return (
-            <div key={index} className="flex items-start gap-2 p-2 rounded-lg bg-secondary/20 hover:bg-secondary/30 transition-colors">
-              <div className={`flex h-7 w-7 items-center justify-center rounded ${item.bgColor} shrink-0`}>
-                <Icon className={`h-3.5 w-3.5 ${item.color}`} />
+            <div key={index} className="flex items-start gap-3 p-2.5 rounded-lg bg-secondary/20 hover:bg-secondary/30 transition-colors">
+              <div className={`flex h-8 w-8 items-center justify-center rounded ${item.bgColor} shrink-0`}>
+                <Icon className={`h-4 w-4 ${item.color}`} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-1 mb-0.5">
-                  <span className="text-[10px] text-muted-foreground">{item.title}</span>
+                <div className="flex items-center justify-between gap-2 mb-0.5">
+                  <span className="text-xs text-muted-foreground">{item.title}</span>
                 </div>
-                <div className={`text-xs font-semibold ${item.color} truncate`}>{item.value}</div>
-                <p className="text-[10px] text-muted-foreground/70 mt-0.5 line-clamp-1">{item.description}</p>
+                <div className={`text-sm font-semibold ${item.color} truncate`}>{item.value}</div>
+                <p className="text-xs text-muted-foreground/70 mt-0.5 line-clamp-1">{item.description}</p>
               </div>
             </div>
           )

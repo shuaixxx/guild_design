@@ -63,64 +63,64 @@ const matchData = [
 
 export function MatchTimeline() {
   return (
-    <div className="rounded-lg border border-border bg-card p-3 shrink-0">
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="text-sm font-semibold text-foreground">场次胜负时间线</h3>
+    <div className="rounded-lg border border-border bg-card p-4 h-[180px] shrink-0">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-[15px] font-semibold text-foreground">场次胜负时间线</h3>
         
         {/* Legend */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1">
-            <div className="h-2 w-2 rounded-full bg-green-500" />
-            <span className="text-[10px] text-muted-foreground">胜</span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
+            <span className="text-xs text-muted-foreground">胜</span>
           </div>
-          <div className="flex items-center gap-1">
-            <div className="h-2 w-2 rounded-full bg-red-500" />
-            <span className="text-[10px] text-muted-foreground">负</span>
+          <div className="flex items-center gap-1.5">
+            <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
+            <span className="text-xs text-muted-foreground">负</span>
           </div>
         </div>
       </div>
 
-      {/* Timeline */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      {/* Timeline - 7 columns grid */}
+      <div className="grid grid-cols-7 gap-3 h-[calc(100%-40px)]">
         {matchData.map((match) => (
           <div
             key={match.id}
-            className={`shrink-0 w-[130px] rounded-lg border p-2.5 transition-colors ${
+            className={`rounded-lg border p-3 transition-colors h-full flex flex-col ${
               match.result === "win" 
                 ? "border-green-500/30 bg-green-500/5 hover:border-green-500/50" 
                 : "border-red-500/30 bg-red-500/5 hover:border-red-500/50"
             }`}
           >
             {/* Date */}
-            <div className="text-[10px] text-muted-foreground mb-1">{match.date}</div>
+            <div className="text-xs text-muted-foreground mb-1">{match.date}</div>
 
             {/* Opponent */}
-            <div className="text-xs font-medium text-foreground mb-1.5">VS {match.opponent}</div>
+            <div className="text-sm font-medium text-foreground mb-2">VS {match.opponent}</div>
 
             {/* Result & Participants */}
-            <div className="flex items-center justify-between mb-1">
-              <div className={`flex items-center gap-0.5 ${
+            <div className="flex items-center justify-between mb-1.5">
+              <div className={`flex items-center gap-1 ${
                 match.result === "win" ? "text-green-500" : "text-red-500"
               }`}>
                 {match.result === "win" ? (
-                  <Trophy className="h-3 w-3" />
+                  <Trophy className="h-3.5 w-3.5" />
                 ) : (
-                  <XCircle className="h-3 w-3" />
+                  <XCircle className="h-3.5 w-3.5" />
                 )}
-                <span className="text-[10px] font-medium">
+                <span className="text-xs font-medium">
                   {match.result === "win" ? "胜" : "负"}
                 </span>
               </div>
-              <div className="flex items-center gap-0.5 text-muted-foreground">
-                <Users className="h-2.5 w-2.5" />
-                <span className="text-[10px]">{match.participants}人</span>
+              <div className="flex items-center gap-1 text-muted-foreground">
+                <Users className="h-3 w-3" />
+                <span className="text-xs">{match.participants}人</span>
               </div>
             </div>
 
             {/* Team Score */}
-            <div className="flex items-baseline gap-1">
-              <span className="text-[10px] text-muted-foreground">团队评分</span>
-              <span className="text-sm font-semibold text-primary">{match.teamScore}</span>
+            <div className="flex items-baseline gap-1.5 mt-auto">
+              <span className="text-xs text-muted-foreground">评分</span>
+              <span className="text-base font-semibold text-primary">{match.teamScore}</span>
             </div>
           </div>
         ))}

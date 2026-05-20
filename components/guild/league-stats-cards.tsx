@@ -27,27 +27,27 @@ function Top3Card({ title, icon: Icon, data, unit }: {
   unit: string
 }) {
   return (
-    <div className="rounded-lg border border-border bg-card p-3 h-full">
-      <div className="flex items-center gap-2 mb-2">
-        <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
-          <Icon className="h-3.5 w-3.5 text-primary" />
+    <div className="rounded-lg border border-border bg-card p-4 h-full flex flex-col">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10">
+          <Icon className="h-4 w-4 text-primary" />
         </div>
-        <span className="text-xs font-medium text-foreground">{title}</span>
-        <span className="text-[10px] text-muted-foreground ml-auto">{unit}</span>
+        <span className="text-sm font-medium text-foreground">{title}</span>
+        <span className="text-xs text-muted-foreground ml-auto">{unit}</span>
       </div>
-      <div className="space-y-1.5">
+      <div className="flex-1 flex flex-col justify-center gap-2">
         {data.map((item) => (
-          <div key={item.rank} className="flex items-center gap-2">
-            <span className={`text-[10px] font-bold w-4 ${
+          <div key={item.rank} className="flex items-center gap-2.5">
+            <span className={`text-sm font-bold w-5 ${
               item.rank === 1 ? "text-primary" : "text-muted-foreground/60"
             }`}>
               {item.rank}
             </span>
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary text-[10px] font-medium text-foreground">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-xs font-medium text-foreground">
               {item.avatar}
             </div>
-            <span className="flex-1 text-xs text-foreground truncate">{item.name}</span>
-            <span className="text-xs font-semibold text-primary">{item.value}</span>
+            <span className="flex-1 text-sm text-foreground truncate">{item.name}</span>
+            <span className="text-sm font-semibold text-primary">{item.value}</span>
           </div>
         ))}
       </div>
@@ -57,38 +57,42 @@ function Top3Card({ title, icon: Icon, data, unit }: {
 
 export function LeagueStatsCards() {
   return (
-    <div className="grid grid-cols-5 gap-3">
+    <div className="grid gap-4 h-[155px] shrink-0" style={{ gridTemplateColumns: '1fr 1fr 1.5fr 1.5fr 1.5fr' }}>
       {/* Total Matches */}
-      <div className="rounded-lg border border-border bg-card p-3">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
-            <Swords className="h-3.5 w-3.5 text-primary" />
+      <div className="rounded-lg border border-border bg-card p-4 flex flex-col">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10">
+            <Swords className="h-4 w-4 text-primary" />
           </div>
-          <span className="text-xs font-medium text-foreground">总场次</span>
+          <span className="text-sm font-medium text-foreground">总场次</span>
         </div>
-        <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-bold text-foreground">18</span>
-          <span className="text-xs text-muted-foreground">场</span>
-        </div>
-        <div className="text-[10px] text-muted-foreground">
-          较上周 <span className="text-green-500">+2</span>
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="flex items-baseline gap-1">
+            <span className="text-[32px] font-bold text-foreground leading-none">18</span>
+            <span className="text-sm text-muted-foreground">场</span>
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">
+            较上周 <span className="text-green-500 font-medium">+2</span>
+          </div>
         </div>
       </div>
 
       {/* Win Rate */}
-      <div className="rounded-lg border border-border bg-card p-3">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
-            <Trophy className="h-3.5 w-3.5 text-primary" />
+      <div className="rounded-lg border border-border bg-card p-4 flex flex-col">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-primary/10">
+            <Trophy className="h-4 w-4 text-primary" />
           </div>
-          <span className="text-xs font-medium text-foreground">胜率</span>
+          <span className="text-sm font-medium text-foreground">胜率</span>
         </div>
-        <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-bold text-foreground">66.7</span>
-          <span className="text-xs text-muted-foreground">%</span>
-        </div>
-        <div className="text-[10px] text-muted-foreground">
-          12 胜 / 6 负
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="flex items-baseline gap-1">
+            <span className="text-[32px] font-bold text-foreground leading-none">66.7</span>
+            <span className="text-sm text-muted-foreground">%</span>
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">
+            12 胜 / 6 负
+          </div>
         </div>
       </div>
 

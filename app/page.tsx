@@ -12,17 +12,17 @@ export default function LeagueOverviewPage() {
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
-      {/* Left Sidebar */}
+      {/* Left Sidebar - 220px */}
       <GuildSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Header */}
+        {/* Header - 64-72px */}
         <LeagueHeader />
 
-        {/* Content Area - 使用 flex-1 和固定间距确保内容在一屏内 */}
-        <div className="flex flex-1 flex-col p-4 gap-3 overflow-hidden">
-          {/* Top Stats Cards */}
+        {/* Content Area - 内边距20px */}
+        <div className="flex flex-1 flex-col p-5 gap-4 overflow-hidden">
+          {/* Top Stats Cards - 150-165px */}
           <LeagueStatsCards />
 
           {/* Middle Section - 占据主要空间 */}
@@ -30,7 +30,7 @@ export default function LeagueOverviewPage() {
             <MainAnalysisSection />
           </div>
 
-          {/* Bottom - Match Timeline */}
+          {/* Bottom - Match Timeline - 170-190px */}
           <MatchTimeline />
         </div>
       </div>
